@@ -1,0 +1,21 @@
+Home controller - index (uvod)
+				- registrace/login
+				- about
+				- ranking
+
+Game controller - profile
+				- questy
+				- shopy
+				- arena
+
+Admin controller - statistics
+				 - List<players>
+				 - tickets
+				 - event system .
+
+FTP:
+HOSTNAME: ftp://free.aspify.com
+jmeno:rognar.aspifyhost.cz
+heslo:Kokotom123
+
+Databaze: server=free.aspify.com;uid=db232;pwd=Kokotom123;database=db232
