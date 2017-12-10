@@ -29,12 +29,17 @@ namespace Rognar.Controllers
             return View();
         }
 
+        public ActionResult InvalidLogin()
+        {
+            return View();
+        }
+
         public ActionResult Login()
         {
             if (LoginHelper.LogIn(this, Request["username"], Request["password"]))
                 return new RedirectResult("/Home/Index");
 
-            return new RedirectResult("/Home/Index");
+            return new RedirectResult("/Home/InvalidLogin");
         }
 
         public ActionResult Logout()
