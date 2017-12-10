@@ -11,7 +11,6 @@ namespace Rognar.Controllers
         // GET: Game
         public ActionResult UserInfo()
         {
-            ViewBag.Message = ":)";
             return View();
         }
     }

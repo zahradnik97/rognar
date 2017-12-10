@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.Title = "Register";
+    bool submit = Request["submit"] != null;
+    bool unameOk = true, passOk = true, mailOk = true;
+    string unameError = string.Empty, passError = string.Empty, mailError = string.Empty;
+
+    if (submit)
+    {
+        var db = new Rognar.Models.MainDB();
+        db.Database.Connection.Open();
+        if (string.IsNullOrEmpty(Request["username"]) || Request["username"].Length < 3)
+        {
+            unameOk = false;
+            unameError = "Username must be at least 3 characters long.";
+        }
+        /*else if (db.Users.Where(u => u.Username.ToLower() == Request["username"].Trim().ToLower()).FirstOrDefault() != null)
+        {
+            unameOk = false;
+            unameError = "Username is already taken.";
+        }*/
+
+        if (string.IsNullOrEmpty(Request["password"]) || Request["password"].Length < 6)
+        {
+            passOk = false;
+            passError = "Password must be at least 6 inches long.";
+        }
+
+        if (string.IsNullOrEmpty(Request["email"]) || !(new System.ComponentModel.DataAnnotations.EmailAddressAttribute()).IsValid(Request["email"]))
+        {
+            mailOk = false;
+            mailError = "Invalid email address.";
+        }
+
+        if (unameOk && passOk && mailOk)
+        {
+            db.Users.Add(new Rognar.Models.User() { Username = Request["username"].Trim(), Password = Rognar.Helpers.LoginHelper.HashPassword(Request["password"]), Email = Request["email"] });
+            db.SaveChanges();
+        }
+    }
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>@ViewBag.Title</h2>
+
+        <form method="post" action="" class="form-horizontal">
+            <div class="form-group @(submit && !unameOk ? "has-error" : string.Empty)">
+                <label for="uname" class="col-sm-4">Username</label>
+                <div class="col-sm-8">
+                    <input type="text" name="username" id="uname" placeholder="Username" value="@Request["username"]" class="form-control " />
+                    <span id="helpBlock" class="help-block">@unameError</span>
+                </div>
+            </div>
+            <div class="form-group @(submit && !passOk ? "has-error" : string.Empty)">
+                <label for="pass" class="col-sm-4">Passsword</label>
+                <div class="col-sm-8">
+                    <input type="password" name="password" id="pass" placeholder="Password" class="form-control" />
+                    <span id="helpBlock" class="help-block">@passError</span>
+                </div>
+            </div>
+            <div class="form-group @(submit && !mailOk ? "has-error" : string.Empty)">
+                <label for="mail" class="col-sm-4">Email address</label>
+                <div class="col-sm-8">
+                    <input type="email" name="email" id="mail" placeholder="Email" value="@Request["email"]" class="form-control" />
+                    <span id="helpBlock" class="help-block">@mailError</span>
+                </div>
+            </div>
+
+            <div class="col-sm-offset-4 col-sm-8">
+                <button type="submit" name="submit" class="btn btn-default col-sm-10">Register</button>
+            </div>
+</form>
+    </div>
+</div>
