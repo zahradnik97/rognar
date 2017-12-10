@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using Rognar.Helpers;
+
 namespace Rognar.Controllers
 {
     public class HomeController : Controller
@@ -25,6 +27,20 @@ namespace Rognar.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult Login()
+        {
+            if (LoginHelper.LogIn(this, Request["username"], Request["password"]))
+                return new RedirectResult("/Home/Index");
+
+            return new RedirectResult("/Home/Index");
+        }
+
+        public ActionResult Logout()
+        {
+            Session["user"] = null;
+            return new RedirectResult("/Home/Index");
         }
 
         public ActionResult Register()
@@ -74,7 +90,7 @@ namespace Rognar.Controllers
                         db.Users.Add(new Rognar.Models.User() { Username = Request["username"].Trim(), Password = Rognar.Helpers.LoginHelper.HashPassword(Request["password"]), Email = Request["email"] });
                         db.SaveChanges();
                         ViewBag.Message = "Account successfully created.";
-                        Response.Redirect("/Home/Index");
+                        return new RedirectResult("/Home/Index");
                     }
                     catch
                     {

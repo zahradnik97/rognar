@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 
 Connections.config
+Thumbs.db
