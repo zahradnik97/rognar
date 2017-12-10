@@ -1,3 +1,5 @@
 ﻿@{
+
     Layout = ViewContext.Controller is Rognar.Controllers.GameController ? "~/Views/Game/_GameLayout.cshtml" : "~/Views/Shared/_Layout.cshtml";
+    ViewContext.Controller.ViewBag.IsLoggedIn = Rognar.Helpers.LoginHelper.IsLoggedIn((System.Web.Mvc.Controller)ViewContext.Controller);
 }
