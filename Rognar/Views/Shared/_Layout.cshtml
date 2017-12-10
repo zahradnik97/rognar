@@ -21,10 +21,13 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Domů", "Index", "Home")</li>
                     <li>@Html.ActionLink("O produktu", "About", "Home")</li>
                     <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
                 </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>@Html.ActionLink("Přihlásit se", "Login", "Home")</li> 
+                </ul>
+                
             </div>
         </div>
     </div>
