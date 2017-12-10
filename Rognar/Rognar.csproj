@@ -204,6 +204,7 @@
     <Content Include="Views\Home\Register.cshtml" />
     <Content Include="Views\Game\_GameLayout.cshtml" />
     <Content Include="Views\Home\InvalidLogin.cshtml" />
+    <Content Include="Views\Home\Logout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

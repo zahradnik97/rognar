@@ -45,7 +45,7 @@ namespace Rognar.Controllers
         public ActionResult Logout()
         {
             Session["user"] = null;
-            return new RedirectResult("/Home/Index");
+            return View();
         }
 
         public ActionResult Register()
