@@ -9,7 +9,7 @@ namespace Rognar.Controllers
     public class GameController : Controller
     {
         // GET: Game
-        public ActionResult Profile()
+        public ActionResult UserInfo()
         {
             ViewBag.Message = ":)";
             return View();

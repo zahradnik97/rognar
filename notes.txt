@@ -19,3 +19,12 @@ jmeno:rognar.aspifyhost.cz
 heslo:Kokotom123
 
 Databaze: server=free.aspify.com;uid=db232;pwd=Kokotom123;database=db232
+
+GIT :
+git status (změny)
+git add . (přidsat změny)
+git commit -m "zpráva"
+git reset --hard
+git pull --rebase origin master
+git push origin master
+git diff [jméno souboru]
